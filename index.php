@@ -14,7 +14,7 @@ if(isset($_GET["start"])){
 	if(isset($_POST["data"])){
 		$obj = $_POST["data"];
 		$b64 = base64_encode($obj);
-		
+		echo $b64;
 		@shell_exec("start php " . __DIR__ . "/p.php " . $b64);
 	}
 	
@@ -151,6 +151,7 @@ if(isset($_GET["start"])){
 
 <script>
 $("#start").on("click", function(){
+	// alert();
 	var target_url = $("#target_url").val();
 	
 	if(target_url.length < 1){
@@ -182,7 +183,7 @@ $("#start").on("click", function(){
 		}
 	});
 	
-	var parallel = parseInt($("#parallel").val());
+	//var parallel = parseInt($("#parallel").val());
 	
 	var robj = {
 		target_url: target_url,
@@ -191,6 +192,9 @@ $("#start").on("click", function(){
 		bodies: bodies
 	};
 	
+	console.log(robj);
+	
+	parallel = 1;
 	if(parallel > 1){
 		var nop = 0;
 		
@@ -217,6 +221,8 @@ $("#start").on("click", function(){
 				action: "parallel",
 				data: JSON.stringify(robj)
 			}
+		}).done(function(res){
+			console.log(res);
 		});
 	}
 });
