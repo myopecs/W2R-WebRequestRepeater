@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WebRequestRepeater.Pages.TargetPage"
+             Title="Target">
+
+    <StackLayout Padding="20"  Margin="0, 0, 0, 100">
+        <Label Text="Target URL:"></Label>
+        <Entry x:Name="target_url" Placeholder="https://..." Margin="0, 0, 0, 30"></Entry>
+
+        <Label Text="Request Method:"></Label>
+        <Picker Margin="0, 0, 0, 30" x:Name="request_method" SelectedIndex="1">
+            <Picker.Items>
+                <x:String>GET</x:String>
+                <x:String>POST</x:String>
+                <x:String>PUT</x:String>
+                <x:String>DELETE</x:String>
+            </Picker.Items>
+        </Picker>
+
+        <Label Text="Request Headers:"></Label>
+        <Editor Placeholder="User-Agent: Mozilla ..." x:Name="request_header" Margin="0, 0, 0, 30" HeightRequest="100"></Editor>
+
+        <Label Text="Request Body:"></Label>
+        <Editor Placeholder='param1=data1&amp;param2=data2' x:Name="request_body" Margin="0, 0, 0, 30" HeightRequest="100"></Editor>
+
+        <Label Text="URL Encoded Data?"></Label>
+        <Picker Margin="0, 0, 0, 30" x:Name="is_encoded" SelectedIndex="1">
+            <Picker.Items>
+                <x:String>Yes</x:String>
+                <x:String>No</x:String>
+            </Picker.Items>
+        </Picker>
+
+        <Label Text="Numbers of Thread/Bot:"></Label>
+        <Entry Keyboard="Numeric" Text="1" x:Name="no_thread" Margin="0, 0, 0, 30"></Entry>
+
+        <Button x:Name="btn_start" Text="Start"></Button>
+    </StackLayout>
+    
+</ContentPage>
