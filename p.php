@@ -44,17 +44,23 @@ while(true){
 		CURLOPT_RETURNTRANSFER => true,
 		CURLOPT_ENCODING => '',
 		CURLOPT_MAXREDIRS => 10,
-		CURLOPT_TIMEOUT => 0,
+		CURLOPT_TIMEOUT => 30,
 		CURLOPT_FOLLOWLOCATION => true,
 		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 		CURLOPT_CUSTOMREQUEST => $obj->request_method,
 		CURLOPT_POSTFIELDS => implode("&", $bodies),
 		CURLOPT_HTTPHEADER => $headers,
 	));
-
+	
 	$response = curl_exec($curl);
 
+	if(curl_errno($curl)){
+		echo date("d-M-Y H:i:s\ ") . " - Request Failed: ". $url ."\n"; 		
+	}else{
+		echo date("d-M-Y H:i:s\ ") . " - Request Sent: ". $url ."\n";
+	}
+	
 	curl_close($curl);
-	echo date("d-M-Y H:i:s\ ") . " - Request Sent: ". $url ."\n";
+	
 	sleep(1);
 }
